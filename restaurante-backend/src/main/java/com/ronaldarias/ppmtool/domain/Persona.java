@@ -55,6 +55,7 @@ public class Persona implements Serializable {
     @Column(name = "telefonopersona")
     private String telefonopersona;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Cliente cliente;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
     @JsonIgnore

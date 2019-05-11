@@ -5,6 +5,7 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
@@ -66,12 +67,14 @@ public class Empleado implements Serializable {
     private List<Empleado> empleadoList;
     @JoinColumn(name = "id_subalterno", referencedColumnName = "id_persona")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Empleado empleado;
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false)
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Persona persona;
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonBackReference
     private Rol rol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado", fetch = FetchType.LAZY)
     private List<Pedido> pedidoList;

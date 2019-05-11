@@ -5,6 +5,9 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -40,6 +43,7 @@ public class Rol implements Serializable {
     @Column(name = "descripcionrol")
     private String descripcionrol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Empleado> empleadoList;
 
     public Rol() {

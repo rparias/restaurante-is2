@@ -59,10 +59,10 @@ public class Empleado implements Serializable {
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Persona persona;
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @ManyToOne(optional = false)
     private Rol rol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Pedido> pedidoList;
 
     public Empleado() {

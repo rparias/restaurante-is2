@@ -43,7 +43,7 @@ public class Rol implements Serializable {
     @Column(name = "descripcionrol")
     private String descripcionrol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonIgnore
     private List<Empleado> empleadoList;
 
     public Rol() {

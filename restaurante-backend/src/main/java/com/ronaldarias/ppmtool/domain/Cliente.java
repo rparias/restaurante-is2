@@ -8,6 +8,8 @@ package com.ronaldarias.ppmtool.domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -24,6 +26,8 @@ public class Cliente implements Serializable {
     @Column(name = "id_persona")
     private Integer idPersona;
     @Basic(optional = false)
+    @NotBlank(message = "El ruc o cedula es requerida")
+    @Size(min = 10, max = 13, message = "La cédula o ruc debe contener 10 o 13 digitos")
     @Column(name = "cedularuccliente")
     private String cedularuccliente;
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")

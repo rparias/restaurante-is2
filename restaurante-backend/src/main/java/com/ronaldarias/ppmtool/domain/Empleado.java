@@ -5,13 +5,15 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
 
 /**
  *
@@ -29,24 +31,31 @@ public class Empleado implements Serializable {
     @Column(name = "id_persona")
     private Integer idPersona;
     @Basic(optional = false)
-    @Column(name = "cedulaempleado")
+    @Column(name = "cedulaempleado", unique = true)
+    @NotBlank(message = "La cedula es requerida")
+    @Size(min = 10, max = 10, message = "La cédula debe contener 10 digitos")
     private String cedulaempleado;
     @Basic(optional = false)
     @Column(name = "fechanacimientoempleado")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechanacimientoempleado;
     @Basic(optional = false)
     @Column(name = "fechaingresoempleado")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaingresoempleado;
     @Column(name = "fechasalidaempleado")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechasalidaempleado;
     @Basic(optional = false)
     @Column(name = "usuarioempleado")
+    @NotBlank(message = "El usuario es requerido")
     private String usuarioempleado;
     @Basic(optional = false)
     @Column(name = "passwordempleado")
+    @NotBlank(message = "La contrasena es requerida")
     private String passwordempleado;
     @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
     @JsonIgnore

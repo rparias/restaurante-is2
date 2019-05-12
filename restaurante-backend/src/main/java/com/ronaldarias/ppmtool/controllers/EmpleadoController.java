@@ -59,6 +59,6 @@ public class EmpleadoController {
 
         empleadoService.deleteEmpleadoById(empleadoId);
 
-        return new ResponseEntity<String>("Empleado con ID: " + empleadoId + " ha sido eliminada", HttpStatus.OK);
+        return new ResponseEntity<String>("Empleado con ID: " + empleadoId + " ha sido eliminado", HttpStatus.OK);
     }
 }

@@ -5,6 +5,8 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -23,6 +25,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -39,9 +42,11 @@ public class Pedido implements Serializable {
     protected PedidoPK pedidoPK;
     @Basic(optional = false)
     @Column(name = "numeropedido")
+    @NotBlank(message = "El número de pedido es requerido")
     private String numeropedido;
     @Basic(optional = false)
     @Column(name = "fechapedido")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechapedido;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

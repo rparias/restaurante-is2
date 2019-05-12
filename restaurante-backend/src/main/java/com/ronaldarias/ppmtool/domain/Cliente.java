@@ -7,18 +7,7 @@ package com.ronaldarias.ppmtool.domain;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -32,13 +21,12 @@ public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "id_persona")
     private Integer idPersona;
     @Basic(optional = false)
     @Column(name = "cedularuccliente")
     private String cedularuccliente;
-    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false)
+    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Persona persona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.LAZY)

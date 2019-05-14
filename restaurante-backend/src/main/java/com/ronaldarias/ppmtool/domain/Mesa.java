@@ -45,7 +45,7 @@ public class Mesa implements Serializable {
     @Column(name = "sillasmesa")
     private int sillasmesa;
     @JoinColumn(name = "id_estadomesa", referencedColumnName = "id_estadomesa")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private EstadoMesa estadoMesa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mesa", fetch = FetchType.LAZY)
     private List<Pedido> pedidoList;

@@ -17,7 +17,7 @@ public class TipoPedidoService {
         try {
             return tipopedidoRepository.save(tipopedido);
         } catch (Exception ex) {
-            throw new ProjectIdException("TipoPedido ID " + tipopedido.getIdTipoPedido() + " already exists");
+            throw new ProjectIdException("TipoPedido ID " + tipopedido.getIdTipopedido() + " already exists");
         }
 
     }

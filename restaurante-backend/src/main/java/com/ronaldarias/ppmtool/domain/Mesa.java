@@ -127,5 +127,4 @@ public class Mesa implements Serializable {
     public String toString() {
         return "domain.Mesa[ idMesa=" + idMesa + " ]";
     }
-    
 }

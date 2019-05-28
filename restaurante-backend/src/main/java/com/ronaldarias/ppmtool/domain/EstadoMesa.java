@@ -5,6 +5,8 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -39,7 +41,8 @@ public class EstadoMesa implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombreestadomesa")
     private String nombreestadomesa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoMesa", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoMesa")
+    @JsonIgnore
     private List<Mesa> mesaList;
 
     public EstadoMesa() {

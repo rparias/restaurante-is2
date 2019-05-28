@@ -5,26 +5,15 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -42,38 +31,47 @@ public class Empleado implements Serializable {
     @Column(name = "id_persona")
     private Integer idPersona;
     @Basic(optional = false)
-    @Column(name = "cedulaempleado")
+    @Column(name = "cedulaempleado", unique = true)
+    @NotBlank(message = "La cedula es requerida")
+    @Size(min = 10, max = 10, message = "La cédula debe contener 10 digitos")
     private String cedulaempleado;
     @Basic(optional = false)
     @Column(name = "fechanacimientoempleado")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechanacimientoempleado;
     @Basic(optional = false)
     @Column(name = "fechaingresoempleado")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaingresoempleado;
     @Column(name = "fechasalidaempleado")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechasalidaempleado;
     @Basic(optional = false)
     @Column(name = "usuarioempleado")
+    @NotBlank(message = "El usuario es requerido")
     private String usuarioempleado;
     @Basic(optional = false)
     @Column(name = "passwordempleado")
+    @NotBlank(message = "La contrasena es requerida")
     private String passwordempleado;
     @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Empleado> empleadoList;
     @JoinColumn(name = "id_subalterno", referencedColumnName = "id_persona")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Empleado empleado;
-    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false)
+    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Persona persona;
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Rol rol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Pedido> pedidoList;
 
     public Empleado() {

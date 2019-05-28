@@ -59,6 +59,6 @@ public class ClienteController {
 
         clienteService.deleteClienteById(clienteId);
 
-        return new ResponseEntity<String>("Cliente con ID: " + clienteId + " ha sido eliminada", HttpStatus.OK);
+        return new ResponseEntity<String>("Cliente con ID: " + clienteId + " ha sido eliminado", HttpStatus.OK);
     }
 }

@@ -23,6 +23,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -42,11 +43,13 @@ public class Persona implements Serializable {
     private Integer idPersona;
     @Basic(optional = false)
     @Column(name = "nombre1persona")
+    @NotBlank(message = "Primer nombre es requerido")
     private String nombre1persona;
     @Column(name = "nombre2persona")
     private String nombre2persona;
     @Basic(optional = false)
     @Column(name = "apellido1persona")
+    @NotBlank(message = "Primer apellido es requerido")
     private String apellido1persona;
     @Column(name = "apellido2persona")
     private String apellido2persona;
@@ -55,6 +58,7 @@ public class Persona implements Serializable {
     @Column(name = "telefonopersona")
     private String telefonopersona;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Cliente cliente;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
     @JsonIgnore

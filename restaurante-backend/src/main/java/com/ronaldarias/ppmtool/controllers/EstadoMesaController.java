@@ -12,6 +12,7 @@ import com.ronaldarias.ppmtool.domain.EstadoMesa;
 import com.ronaldarias.ppmtool.services.EstadoMesaService;
 import com.ronaldarias.ppmtool.services.MapValidationErrorService;
 
+@CrossOrigin(origins = "https://restaurante-is-udla.herokuapp.com")
 @RestController
 @RequestMapping("/api/estadoMesa")
 public class EstadoMesaController {

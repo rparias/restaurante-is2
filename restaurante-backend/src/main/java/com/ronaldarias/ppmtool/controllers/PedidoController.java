@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin(origins = "https://restaurante-is-udla.herokuapp.com")
 @RestController
 @RequestMapping("/api/pedido")
 public class PedidoController {

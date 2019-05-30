@@ -35,7 +35,7 @@ public class EstadoMesaController {
 		ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if (errorMap != null)
             return errorMap;
-        estadoMesaService.saveOrUpdateEsatdoMesa(estadoMesa);
+        estadoMesaService.saveOrUpdateEstadoMesa(estadoMesa);
         return new ResponseEntity<EstadoMesa>(estadoMesa,HttpStatus.CREATED);
 
 	}
@@ -52,7 +52,7 @@ public class EstadoMesaController {
 	@DeleteMapping("/{estadoMesaId}")
 	public ResponseEntity<?> deleteMesaById(@PathVariable Integer estadoMesaId){
 		estadoMesaService.DeleteEstadoMesaById(estadoMesaId);
-		return new ResponseEntity<String>("Esatdo Mesa con ID: "+estadoMesaId+ " ha sido eliminada", HttpStatus.OK);
+		return new ResponseEntity<String>("Estado Mesa con ID: "+estadoMesaId+ " ha sido eliminada", HttpStatus.OK);
 	}
 	
 }

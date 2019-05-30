@@ -12,7 +12,7 @@ public class MesaService {
 	@Autowired
 	private MesaRepository mesaRepository;
 	
-	 public Mesa saveOrUpdatePersona(Mesa mesa) {
+	 public Mesa saveOrUpdateMesa(Mesa mesa) {
 
 
 	        try {
@@ -40,7 +40,7 @@ public class MesaService {
 		 Mesa mesa = mesaRepository.findById(mesaId)
 				 .orElse(null);
 		 if (mesa == null) {
-			 throw new ProjectIdException("Mesa ID"+ mesaId+"does not exist");
+			 throw new ProjectIdException("Mesa ID "+ mesaId+" does not exist");
 		 }
 		 mesaRepository.delete(mesa);
 	 }

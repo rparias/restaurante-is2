@@ -36,7 +36,7 @@ public class MesaController {
     	 ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
          if (errorMap != null)
              return errorMap;
-         mesaService.saveOrUpdatePersona(mesa);
+         mesaService.saveOrUpdateMesa(mesa);
          return new ResponseEntity<Mesa>(mesa, HttpStatus.CREATED);
     }
     

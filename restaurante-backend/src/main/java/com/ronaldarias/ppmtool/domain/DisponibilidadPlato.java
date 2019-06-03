@@ -40,10 +40,9 @@ public class DisponibilidadPlato implements Serializable {
     @Column(name = "id_disponibilidadplato")
     private Integer idDisponibilidadplato;
     @Basic(optional = false)
-    @Column(name = "descripcionDisponibilidad")
+    @Column(name = "descripciondisponibilidad")
     private String descripcionDisponibilidad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "disponibilidadPlato", fetch = FetchType.LAZY)
-    @JsonManagedReference
     @JsonIgnore
     private List<Plato> platoList;
 

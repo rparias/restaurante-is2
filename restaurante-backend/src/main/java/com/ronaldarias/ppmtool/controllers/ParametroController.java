@@ -18,7 +18,7 @@ public class ParametroController {
 
     @Autowired
     private ParametroService parametroService;
-    
+
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
 
@@ -28,7 +28,7 @@ public class ParametroController {
      *
      * @return si result tiene errores entonces devuelve un Map con la
      * estructura "atributo":"error". De lo contrario
-     * devuelve un response json tipo Persona con los datos ingresados
+     * devuelve un response json tipo Parametro con los datos ingresados
      */
     @PostMapping("")
     public ResponseEntity<?> createNewParametro (@Valid @RequestBody Parametro parametro, BindingResult result){

@@ -28,7 +28,7 @@ public class DisponibilidadPlatoController {
      *
      * @return si result tiene errores entonces devuelve un Map con la
      * estructura "atributo":"error". De lo contrario
-     * devuelve un response json tipo Persona con los datos ingresados
+     * devuelve un response json tipo DisponibilidadPlato con los datos ingresados
      */
     @PostMapping("")
     public ResponseEntity<?> createNewDisponibilidadPlato (@Valid @RequestBody DisponibilidadPlato disponibilidadPlato, BindingResult result){

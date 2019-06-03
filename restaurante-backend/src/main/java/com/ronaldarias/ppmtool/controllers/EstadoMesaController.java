@@ -29,7 +29,7 @@ public class EstadoMesaController {
      *
      * @return si result tiene errores entonces devuelve un Map con la
      * estructura "atributo":"error". De lo contrario
-     * devuelve un response json tipo Persona con los datos ingresados
+     * devuelve un response json tipo EstadoMesa con los datos ingresados
      */
 	@PostMapping("")
 	public ResponseEntity<?> createNewEsatdoMesa(@Valid @RequestBody EstadoMesa estadoMesa,BindingResult result){

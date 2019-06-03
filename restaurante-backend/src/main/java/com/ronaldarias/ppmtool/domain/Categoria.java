@@ -5,7 +5,8 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,7 +32,7 @@ public class Categoria implements Serializable {
     @Column(name = "nombrecategoria")
     private String nombrecategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria", fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private List<Plato> platoList;
 
     public Categoria() {

@@ -5,6 +5,8 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -48,6 +50,7 @@ public class Mesa implements Serializable {
     @ManyToOne(optional = false)
     private EstadoMesa estadoMesa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mesa", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Pedido> pedidoList;
 
     public Mesa() {

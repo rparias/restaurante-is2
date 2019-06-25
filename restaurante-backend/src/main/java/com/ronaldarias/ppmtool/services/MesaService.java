@@ -9,39 +9,41 @@ import com.ronaldarias.ppmtool.repositories.MesaRepository;
 @Service
 public class MesaService {
 
-	@Autowired
-	private MesaRepository mesaRepository;
-	
-	 public Mesa saveOrUpdatePersona(Mesa mesa) {
+    @Autowired
+    private MesaRepository mesaRepository;
 
+    public Mesa saveOrUpdateMesa(Mesa mesa) {
 
-	        try {
-	            return mesaRepository.save(mesa);
-	        } catch (Exception ex) {
-	            throw new ProjectIdException("Mesa ID " + mesa.getIdMesa() + " already exists");
-	        }
+        try {
+            return mesaRepository.save(mesa);
+        } catch (Exception ex) {
+            throw new ProjectIdException("Mesa ID " + mesa.getIdMesa() + " already exists");
+        }
 
-	    }
-	 public Mesa findMesaById(Integer mesaId) {
+    }
 
-	        Mesa mesa = mesaRepository.findById(mesaId)
-	                .orElse(null);
+    public Mesa findMesaById(Integer mesaId) {
 
-	        if (mesa == null) {
-	            throw new ProjectIdException("Mesa ID " + mesaId + " does not exist");
-	        }
+        Mesa mesa = mesaRepository.findById(mesaId)
+                .orElse(null);
 
-	        return mesa;
-	    }
-	 public Iterable<Mesa> findAllMesas(){
-		 return mesaRepository.findAll();
-	 }
-	 public void deleteMesaById(Integer mesaId) {
-		 Mesa mesa = mesaRepository.findById(mesaId)
-				 .orElse(null);
-		 if (mesa == null) {
-			 throw new ProjectIdException("Mesa ID"+ mesaId+"does not exist");
-		 }
-		 mesaRepository.delete(mesa);
-	 }
+        if (mesa == null) {
+            throw new ProjectIdException("Mesa ID " + mesaId + " does not exist");
+        }
+
+        return mesa;
+    }
+
+    public Iterable<Mesa> findAllMesas() {
+        return mesaRepository.findAll();
+    }
+
+    public void deleteMesaById(Integer mesaId) {
+        Mesa mesa = mesaRepository.findById(mesaId)
+                .orElse(null);
+        if (mesa == null) {
+            throw new ProjectIdException("Mesa ID " + mesaId + " does not exist");
+        }
+        mesaRepository.delete(mesa);
+    }
 }

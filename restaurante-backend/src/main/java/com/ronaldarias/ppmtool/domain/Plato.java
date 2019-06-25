@@ -5,23 +5,14 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  *
@@ -49,12 +40,15 @@ public class Plato implements Serializable {
     @Column(name = "descripcionplato")
     private String descripcionplato;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plato", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Detalle> detalleList;
     @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
+    @JsonManagedReference
     private Categoria categoria;
     @JoinColumn(name = "id_disponibilidadplato", referencedColumnName = "id_disponibilidadplato")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonBackReference
     private DisponibilidadPlato disponibilidadPlato;
 
     public Plato() {

@@ -22,6 +22,7 @@ public class MesaController {
 
 	@Autowired
 	private MesaService mesaService;
+
 	@Autowired
 	private MapValidationErrorService mapValidationErrorService; 
 	
@@ -31,14 +32,14 @@ public class MesaController {
      *
      * @return si result tiene errores entonces devuelve un Map con la
      * estructura "atributo":"error". De lo contrario
-     * devuelve un response json tipo Persona con los datos ingresados
+     * devuelve un response json tipo Mesa con los datos ingresados
      */
     @PostMapping("")
     public ResponseEntity<?> createNewMesa (@Valid @RequestBody Mesa mesa, BindingResult result){
     	 ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
          if (errorMap != null)
              return errorMap;
-         mesaService.saveOrUpdatePersona(mesa);
+         mesaService.saveOrUpdateMesa(mesa);
          return new ResponseEntity<Mesa>(mesa, HttpStatus.CREATED);
     }
     

@@ -12,7 +12,7 @@ public class EstadoMesaService {
 
 	@Autowired
 	private EstadoMesaRepository estadomesaRepository;
-	public EstadoMesa saveOrUpdateEsatdoMesa(EstadoMesa estadoMesa) {
+	public EstadoMesa saveOrUpdateEstadoMesa(EstadoMesa estadoMesa) {
 		try {
 			return estadomesaRepository.save(estadoMesa);
 		}catch (Exception ex) {
@@ -37,7 +37,7 @@ public class EstadoMesaService {
 		EstadoMesa estadoMesa =estadomesaRepository.findById(estadoMesaId)
 				.orElse(null);
 		if(estadoMesa== null) {
-			throw new ProjectIdException("Estado Mesa Id"+estadoMesaId+"does not exist");
+			throw new ProjectIdException("Estado Mesa Id "+estadoMesaId+" does not exist");
 		}
 		estadomesaRepository.delete(estadoMesa);
 	}

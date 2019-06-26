@@ -5,9 +5,7 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -44,11 +42,9 @@ public class Plato implements Serializable {
     private List<Detalle> detalleList;
     @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(optional = false)
-    @JsonManagedReference
     private Categoria categoria;
     @JoinColumn(name = "id_disponibilidadplato", referencedColumnName = "id_disponibilidadplato")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @ManyToOne(optional = false)
     private DisponibilidadPlato disponibilidadPlato;
 
     public Plato() {

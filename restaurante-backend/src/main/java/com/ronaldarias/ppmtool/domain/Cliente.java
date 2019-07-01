@@ -5,6 +5,8 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -33,6 +35,7 @@ public class Cliente implements Serializable {
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Persona persona;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Pedido> pedidoList;
 

@@ -6,9 +6,7 @@
 package com.ronaldarias.ppmtool.domain;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
 /**
  *
@@ -17,6 +15,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PedidoPK implements Serializable {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_pedido")
     private int idPedido;

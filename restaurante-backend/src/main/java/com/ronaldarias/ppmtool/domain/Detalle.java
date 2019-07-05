@@ -5,6 +5,7 @@
  */
 package com.ronaldarias.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -46,10 +47,11 @@ public class Detalle implements Serializable {
         , @JoinColumn(name = "cli_id_persona", referencedColumnName = "cli_id_persona", insertable = false, updatable = false)
         , @JoinColumn(name = "id_mesa", referencedColumnName = "id_mesa", insertable = false, updatable = false)})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Pedido pedido;
     @JoinColumn(name = "id_plato", referencedColumnName = "id_plato", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    @JsonManagedReference
+    @JsonIgnore
     private Plato plato;
 
     public Detalle() {

@@ -6,26 +6,13 @@
 package com.ronaldarias.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -41,10 +28,6 @@ public class Pedido implements Serializable {
     @EmbeddedId
     protected PedidoPK pedidoPK;
     @Basic(optional = false)
-    @Column(name = "numeropedido")
-    @NotBlank(message = "El número de pedido es requerido")
-    private String numeropedido;
-    @Basic(optional = false)
     @Column(name = "fechapedido")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
@@ -59,19 +42,23 @@ public class Pedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "totalpedido")
     private BigDecimal totalpedido;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<Detalle> detalleList;
     @JoinColumn(name = "cli_id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
+    @JsonIgnore
     private Cliente cliente;
     @JoinColumn(name = "emp_id_persona", referencedColumnName = "id_persona", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
+    @JsonIgnore
     private Empleado empleado;
     @JoinColumn(name = "id_mesa", referencedColumnName = "id_mesa", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
+    @JsonIgnore
     private Mesa mesa;
     @JoinColumn(name = "id_tipopedido", referencedColumnName = "id_tipopedido", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
+    @JsonIgnore
     private TipoPedido tipoPedido;
 
     public Pedido() {
@@ -83,7 +70,6 @@ public class Pedido implements Serializable {
 
     public Pedido(PedidoPK pedidoPK, String numeropedido, Date fechapedido, BigDecimal subtotalpedido, BigDecimal ivapedido, BigDecimal totalpedido) {
         this.pedidoPK = pedidoPK;
-        this.numeropedido = numeropedido;
         this.fechapedido = fechapedido;
         this.subtotalpedido = subtotalpedido;
         this.ivapedido = ivapedido;
@@ -100,14 +86,6 @@ public class Pedido implements Serializable {
 
     public void setPedidoPK(PedidoPK pedidoPK) {
         this.pedidoPK = pedidoPK;
-    }
-
-    public String getNumeropedido() {
-        return numeropedido;
-    }
-
-    public void setNumeropedido(String numeropedido) {
-        this.numeropedido = numeropedido;
     }
 
     public Date getFechapedido() {

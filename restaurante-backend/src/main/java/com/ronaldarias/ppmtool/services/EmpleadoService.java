@@ -42,6 +42,17 @@ public class EmpleadoService {
         return empleado;
     }
 
+    public Empleado findEmpleadoLogin(String usuario, String password) {
+
+        Empleado empleado = empleadoRepository.findEmpleadoByUsuarioempleadoAndPasswordempleado(usuario, password);
+
+        if (empleado == null) {
+            throw new ProjectIdException("Usuario o clave incorrectas");
+        }
+
+        return empleado;
+    }
+
     public Iterable<Empleado> findAllEmpleados() {
         return empleadoRepository.findAll();
     }

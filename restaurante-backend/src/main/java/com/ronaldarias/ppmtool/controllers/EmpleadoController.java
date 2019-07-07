@@ -1,5 +1,6 @@
 package com.ronaldarias.ppmtool.controllers;
 
+import com.ronaldarias.ppmtool.LoginDTO;
 import com.ronaldarias.ppmtool.domain.Empleado;
 import com.ronaldarias.ppmtool.services.EmpleadoService;
 import com.ronaldarias.ppmtool.services.MapValidationErrorService;
@@ -38,6 +39,17 @@ public class EmpleadoController {
             return errorMap;
 
         empleadoService.saveOrUpdateEmpleado(empleado);
+        return new ResponseEntity<Empleado>(empleado, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginEmpleado(@Valid @RequestBody LoginDTO login, BindingResult result) {
+
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null)
+            return errorMap;
+
+        Empleado empleado = empleadoService.findEmpleadoLogin(login.getUsuario(), login.getPassword());
         return new ResponseEntity<Empleado>(empleado, HttpStatus.CREATED);
     }
 

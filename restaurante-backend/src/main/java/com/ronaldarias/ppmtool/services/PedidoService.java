@@ -53,4 +53,14 @@ public class PedidoService {
 
         pedidoRepository.delete(pedido);
     }
+
+    public Integer buscarUltimoIdMasUno() {
+        Integer pedidoPK = pedidoRepository.buscarUltimoId();
+
+        try {
+            return pedidoPK + 1;
+        } catch (Exception e) {
+            return 1;
+        }
+    }
 }

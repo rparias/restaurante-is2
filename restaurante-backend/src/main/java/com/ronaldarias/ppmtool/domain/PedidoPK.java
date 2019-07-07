@@ -15,10 +15,9 @@ import javax.persistence.*;
 @Embeddable
 public class PedidoPK implements Serializable {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_pedido")
-    private int idPedido;
+    private Integer idPedido;
     @Basic(optional = false)
     @Column(name = "id_tipopedido")
     private int idTipopedido;
@@ -35,7 +34,7 @@ public class PedidoPK implements Serializable {
     public PedidoPK() {
     }
 
-    public PedidoPK(int idPedido, int idTipopedido, int empIdPersona, int cliIdPersona, int idMesa) {
+    public PedidoPK(Integer idPedido, int idTipopedido, int empIdPersona, int cliIdPersona, int idMesa) {
         this.idPedido = idPedido;
         this.idTipopedido = idTipopedido;
         this.empIdPersona = empIdPersona;
@@ -43,11 +42,11 @@ public class PedidoPK implements Serializable {
         this.idMesa = idMesa;
     }
 
-    public int getIdPedido() {
+    public Integer getIdPedido() {
         return idPedido;
     }
 
-    public void setIdPedido(int idPedido) {
+    public void setIdPedido(Integer idPedido) {
         this.idPedido = idPedido;
     }
 
@@ -86,7 +85,7 @@ public class PedidoPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idPedido;
+        hash += (Integer) idPedido;
         hash += (int) idTipopedido;
         hash += (int) empIdPersona;
         hash += (int) cliIdPersona;

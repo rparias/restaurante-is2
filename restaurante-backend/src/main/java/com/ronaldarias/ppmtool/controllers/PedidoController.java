@@ -1,5 +1,6 @@
 package com.ronaldarias.ppmtool.controllers;
 
+import com.ronaldarias.ppmtool.domain.Detalle;
 import com.ronaldarias.ppmtool.domain.Pedido;
 import com.ronaldarias.ppmtool.domain.PedidoPK;
 import com.ronaldarias.ppmtool.services.MapValidationErrorService;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -37,6 +39,21 @@ public class PedidoController {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if (errorMap != null)
             return errorMap;
+
+        if (pedido.getPedidoPK().getIdPedido() == null) {
+            PedidoPK pedidoPK = pedido.getPedidoPK();
+            Integer idPedido = pedidoService.buscarUltimoIdMasUno();
+            pedidoPK.setIdPedido(idPedido);
+            pedido.setPedidoPK(pedidoPK);
+
+            List<Detalle> detalleList = pedido.getDetalleList();
+
+            for (Detalle detalle : detalleList) {
+                detalle.getDetallePK().setIdPedido(idPedido);
+            }
+
+            pedido.setDetalleList(detalleList);
+        }
 
         pedidoService.saveOrUpdatePedido(pedido);
         return new ResponseEntity<Pedido>(pedido, HttpStatus.CREATED);

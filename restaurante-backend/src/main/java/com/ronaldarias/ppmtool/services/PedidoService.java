@@ -37,20 +37,33 @@ public class PedidoService {
         return pedido;
     }
 
+    public Pedido findByPedidoId(Integer pedidoId) {
+        return pedidoRepository.buscarPorPedidoId(pedidoId);
+    }
+
     public Iterable<Pedido> findAllPedidos() {
         return pedidoRepository.findAll();
     }
 
     @Transactional
-    public void deletePedidoById(PedidoPK pedidoId) {
+    public void deletePedidoById(Integer pedidoId) {
 
-        Pedido pedido = pedidoRepository.findById(pedidoId)
-                .orElse(null);
+        Pedido pedido = pedidoRepository.buscarPorPedidoId(pedidoId);
 
         if (pedido == null) {
             throw new ProjectIdException("Pedido ID " + pedidoId + " does not exist");
         }
 
         pedidoRepository.delete(pedido);
+    }
+
+    public Integer buscarUltimoIdMasUno() {
+        Integer pedidoPK = pedidoRepository.buscarUltimoId();
+
+        try {
+            return pedidoPK + 1;
+        } catch (Exception e) {
+            return 1;
+        }
     }
 }

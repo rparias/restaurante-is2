@@ -60,9 +60,9 @@ public class PedidoController {
     }
 
     @GetMapping("/{pedidoId}")
-    public ResponseEntity<?> getPedidoById(@PathVariable PedidoPK pedidoId) {
+    public ResponseEntity<?> getPedidoById(@PathVariable Integer pedidoId) {
 
-        Pedido pedido = pedidoService.findPedidoById(pedidoId);
+        Pedido pedido = pedidoService.findByPedidoId(pedidoId);
 
         return new ResponseEntity<Pedido>(pedido, HttpStatus.OK);
     }
@@ -74,7 +74,7 @@ public class PedidoController {
     }
 
     @DeleteMapping("/{pedidoId}")
-    public ResponseEntity<?> deletePedidoById(@PathVariable PedidoPK pedidoId) {
+    public ResponseEntity<?> deletePedidoById(@PathVariable Integer pedidoId) {
 
         pedidoService.deletePedidoById(pedidoId);
 

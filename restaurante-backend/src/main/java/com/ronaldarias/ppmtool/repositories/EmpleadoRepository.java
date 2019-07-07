@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmpleadoRepository extends CrudRepository<Empleado, Integer> {
+
+    public Empleado findEmpleadoByUsuarioempleadoAndPasswordempleado(String usuario, String password);
 }
